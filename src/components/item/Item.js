@@ -1,6 +1,7 @@
 import React from "react";
+import ItemCount from "../item-count/ItemCount";
 
-const Item = ({ name, price, id, setSelectedItem, otherFunction }) => {
+const Item = ({ name, price, id, stock, setSelectedItem, otherFunction }) => {
   const selectItem = () => setSelectedItem({ name, price, id });
 
   return (
@@ -9,6 +10,7 @@ const Item = ({ name, price, id, setSelectedItem, otherFunction }) => {
       <h2>Precio producto: {price}</h2>
       <button onClick={selectItem}>Seleccionar Botón</button>
       <button onClick={otherFunction}>Imprimir en consola</button>
+      <ItemCount stock={stock} initial={0} />
       <hr />
     </div>
   );

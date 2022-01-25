@@ -1,9 +1,10 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import CartWidget from "../icon/CartIcon";
+// import CartWidget from "../icon/CartIcon";
+import { BsFillCartFill } from "react-icons/bs";
 
 const NavBar = () => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className="nav-bars">
       <Container>
         <Navbar.Brand href="#home">My E-Commerce</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -24,7 +25,8 @@ const NavBar = () => {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        <CartWidget />
+        {/* <CartWidget /> */}
+        <BsFillCartFill className="cart-icon" />
       </Container>
     </Navbar>
   );
