@@ -42,7 +42,7 @@
   width: 50px;
 }
 
-.boton {
-  font-size: 30px;
-  border-width: 0;
+.item-container {
+  width: 50%;
+  display: inline-block;
 }

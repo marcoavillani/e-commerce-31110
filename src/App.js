@@ -10,24 +10,28 @@ import { useState } from "react";
 const age = 18;
 
 function App() {
-  const [showFunctionComponent, setShowFunctionComponent] = useState(true);
+  const [showFunctionComponent, setShowFunctionComponent] = useState(false);
 
   return (
     <div className="App">
       <NavBar />
-      <h1>Hola, inicio de nuestro e-commerce :D</h1>
       <hr />
-      <ClassComponent name="Rodolfo" age={age} />
+      {showFunctionComponent && <ClassComponent name="Rodolfo" age={age} />}
+      <button onClick={() => setShowFunctionComponent(!showFunctionComponent)}>
+        Mostrar/Ocultar Componente de clase
+      </button>
       <hr />
       {showFunctionComponent && (
         <FunctionalComponent name="Juan Carlos" age={age} />
       )}
       <button onClick={() => setShowFunctionComponent(!showFunctionComponent)}>
-        Eliminar Componente Funcional
+        Mostrar/Ocultar Componente Funcional
       </button>
 
       <hr />
+
       <ItemListContainer />
+
       <ComponentChildren otherProp="El título">
         <h1>Hola, soy un componente hijo</h1>
         <p>

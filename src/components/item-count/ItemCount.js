@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const ItemCount = ({ stock, initial }) => {
-  const [count, setCount] = useState(initial);
+const ItemCount = ({ stock, setStockSelected }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setStockSelected(count);
+  }, [count]);
 
   const increase = () => {
     if (count < stock) {
       setCount(count + 1);
     }
   };
-
-  // const increase = () => {
-  //   if (count >= stock) return;
-  //   setCount(count + 1);
-  // };
 
   const decrease = () => {
     if (count > 0) {
@@ -21,15 +20,15 @@ const ItemCount = ({ stock, initial }) => {
   };
 
   return (
-    <>
-      <h1>{count}</h1>
-      <button className="boton" onClick={increase}>
-        +
-      </button>
+    <div>
       <button className="boton" onClick={decrease}>
         -
       </button>
-    </>
+      <span>{count}</span>
+      <button className="boton" onClick={increase}>
+        +
+      </button>
+    </div>
   );
 };
 

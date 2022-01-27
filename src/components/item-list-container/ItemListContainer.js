@@ -1,55 +1,42 @@
-import { useState } from "react";
-import Item from "../item/Item";
-
-const items = [
-  {
-    id: "1",
-    name: "Iphone X",
-    price: "999.999$",
-    createdBy: "Apple",
-    stock: 11,
-  },
-  { id: "2", name: "Iphone XS", price: "800$", createdBy: "Apple", stock: 8 },
-  {
-    id: "3",
-    name: "Galaxy Note",
-    price: "850$",
-    createdBy: "Samsung",
-    stock: 6,
-  },
-  {
-    id: "4",
-    name: "Redmi Note 7 Pro",
-    price: "600$",
-    createdBy: "Xiaomi",
-    stock: 4,
-  },
-];
+import { useEffect, useState } from "react";
+import { productsAPI } from "../../helpers/promises";
+import ItemList from "../item-list/ItemList";
 
 const ItemListContainer = () => {
-  const [selectedItem, setSelectedItem] = useState();
-  const otherFunction = () => {
-    console.log("otherFunction");
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const getProducts = async () => {
+    try {
+      const result = await productsAPI;
+      setProducts(result);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+      console.log("Finalización del consumo de la API");
+    }
   };
 
+  if (loading) {
+    return <h1>Cargando...</h1>;
+  }
   return (
-    <div>
+    <div className="item-container">
       <h1>Lista de Productos</h1>
       <h3>Producto seleccionado</h3>
-      <p>{selectedItem ? selectedItem.name : "Ninguno"}</p>
-      <p>{selectedItem ? selectedItem.price : ""}</p>
+      <p>{selectedItem && selectedItem.name}</p>
+      <p>{selectedItem && selectedItem.description}</p>
+      <p>ID: {selectedItem && selectedItem.id}</p>
+      <p>Cantidad seleccionada: {selectedItem && selectedItem.qty}</p>
+      <p>Stock disponible: {selectedItem && selectedItem.stock}</p>
       <hr />
-      {items.map(({ id, name, price, stock }) => (
-        <Item
-          key={id}
-          id={id}
-          name={name}
-          price={price}
-          stock={stock}
-          setSelectedItem={setSelectedItem}
-          otherFunction={otherFunction}
-        />
-      ))}
+      <ItemList items={products} setSelectedItem={setSelectedItem} />
     </div>
   );
 };
