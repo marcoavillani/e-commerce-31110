@@ -5,3 +5,4 @@ export const productsAPI = new Promise((resolve, reject) => {
     resolve(products);
   }, 2000);
 });
+
