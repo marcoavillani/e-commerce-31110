@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const ItemCount = ({ stock, setStockSelected }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     setStockSelected(count);
@@ -14,7 +14,7 @@ const ItemCount = ({ stock, setStockSelected }) => {
   };
 
   const decrease = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
     }
   };

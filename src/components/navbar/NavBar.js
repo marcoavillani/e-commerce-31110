@@ -1,32 +1,79 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 // import CartWidget from "../icon/CartIcon";
-import { BsFillCartFill } from "react-icons/bs";
+import { FiShoppingCart } from "react-icons/fi";
+import { Link, NavLink } from "react-router-dom";
+import "./NavBar.css";
 
 const NavBar = () => {
+  // const activeStyle = {
+  //   color: "red",
+  // };
   return (
     <Navbar bg="light" expand="lg" className="nav-bars">
       <Container>
-        <Navbar.Brand href="#home">My E-Commerce</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">My E-Commerce</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+            {/* <Nav.Link>
+              <NavLink
+                to="/item"
+                style={(isActive) => (isActive ? activeStyle : undefined)}
+              >
+                Item
+              </NavLink>
+            </Nav.Link> */}
+
+            <NavDropdown title="Categories" id="basic-nav-dropdown">
+              <NavDropdown.Item>
+                <NavLink
+                  className={({ isActive }) => (isActive ? "activeClass" : "")}
+                  to="/category/smartphones"
+                >
+                  Smartphones
+                </NavLink>
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item>
+                <NavLink
+                  className={({ isActive }) => (isActive ? "activeClass" : "")}
+                  to="/category/cars"
+                >
+                  Cars
+                </NavLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <NavLink
+                  className={({ isActive }) => (isActive ? "activeClass" : "")}
+                  to="/category/audio"
+                >
+                  Audio
+                </NavLink>
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item>
+                <NavLink
+                  className={({ isActive }) => (isActive ? "activeClass" : "")}
+                  to="/category/gaming"
+                >
+                  Gaming
+                </NavLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <NavLink
+                  className={({ isActive }) => (isActive ? "activeClass" : "")}
+                  to="/category/computing"
+                >
+                  Computing
+                </NavLink>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        {/* <CartWidget /> */}
-        <BsFillCartFill className="cart-icon" />
+        <Link to="/cart">
+          <FiShoppingCart className="cart-icon" />
+        </Link>
       </Container>
     </Navbar>
   );
