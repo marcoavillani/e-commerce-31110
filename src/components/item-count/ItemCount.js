@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const ItemCount = ({ stock, setStockSelected }) => {
+const ItemCount = ({ stock, onAdd }) => {
   const [count, setCount] = useState(1);
-
-  useEffect(() => {
-    setStockSelected(count);
-  }, [count]);
 
   const increase = () => {
     if (count < stock) {
@@ -28,6 +24,7 @@ const ItemCount = ({ stock, setStockSelected }) => {
       <button className="boton" onClick={increase}>
         +
       </button>
+      <button onClick={() => onAdd(count)}>Agregar al carrito</button>
     </div>
   );
 };
