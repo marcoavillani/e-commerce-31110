@@ -7,6 +7,7 @@ import "./ItemDetailContainer.css";
 const ItemDetailContainer = () => {
   const { products } = useProducts();
   const { id } = useParams();
+
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {

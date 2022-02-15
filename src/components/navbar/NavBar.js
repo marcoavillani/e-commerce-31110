@@ -1,13 +1,10 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-// import CartWidget from "../icon/CartIcon";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
+
 import "./NavBar.css";
 
 const NavBar = () => {
-  // const activeStyle = {
-  //   color: "red",
-  // };
   return (
     <Navbar bg="light" expand="lg" className="nav-bars">
       <Container>
@@ -17,15 +14,6 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {/* <Nav.Link>
-              <NavLink
-                to="/item"
-                style={(isActive) => (isActive ? activeStyle : undefined)}
-              >
-                Item
-              </NavLink>
-            </Nav.Link> */}
-
             <NavDropdown title="Categories" id="basic-nav-dropdown">
               <NavDropdown.Item>
                 <NavLink
@@ -71,9 +59,9 @@ const NavBar = () => {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        <Link to="/cart">
+        <NavLink to="/cart">
           <FiShoppingCart className="cart-icon" />
-        </Link>
+        </NavLink>
       </Container>
     </Navbar>
   );
