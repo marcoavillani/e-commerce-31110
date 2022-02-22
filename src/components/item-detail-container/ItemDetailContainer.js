@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from "react";
+import {
+  collection,
+  doc,
+  getDoc,
+  getFirestore,
+  query,
+} from "firebase/firestore";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useProducts from "../../hooks/useProducts";
-import ItemDetails from "../item-detail/ItemDetails";
-import "./ItemDetailContainer.css";
+import { CartContext } from "../../context/CartContext";
+// import useProducts from "../../hooks/useProducts";
+import ItemDetails from "./ItemDetails";
 
 const ItemDetailContainer = () => {
-  const { products } = useProducts();
+  const { products } = useContext(CartContext);
   const { id } = useParams();
-
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {

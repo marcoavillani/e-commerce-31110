@@ -1,6 +1,5 @@
 import React from "react";
-import Item from "../item/Item";
-import "./itemList.css";
+import Item from "./Item";
 
 const ItemList = ({ filterProducts }) => {
   return (

@@ -7,11 +7,15 @@ import { CartProvider } from "./context/CartContext";
 
 function App() {
   return (
-    <div className="App">
-      <CartProvider>
+    <CartProvider>
+      <div className="App">
         <Router />
-      </CartProvider>
-    </div>
+      </div>
+      <hr />
+      <footer>
+        <p>© 2022 Marco Villani</p>
+      </footer>
+    </CartProvider>
   );
 }
 

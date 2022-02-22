@@ -1,3 +1,158 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap");
+:root {
+  --clr-bg: #fefae0;
+}
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  background-color: var(--clr-bg);
+}
+body {
+  background: var(--clr-bg);
+  color: hsl(209, 61%, 16%);
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: 0.1rem;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
   text-align: center;
+}
+a {
+  text-decoration: none;
+}
+.nav-bars a {
+  text-decoration: none;
+}
+
+.App {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--clr-bg);
+  color: #283618;
+}
+.App.dark {
+  background-color: black;
+}
+.btn-back {
+  background: hsl(205, 78%, 60%);
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  text-transform: capitalize;
+  color: white;
+  letter-spacing: 0.1rem;
+  border-color: transparent;
+  cursor: pointer;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.detail-container {
+  background: white;
+  margin: 2rem auto;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 1px 1px 20px grey;
+  width: 50%;
+  padding: 2rem;
+}
+@media (max-width: 1000px) {
+  .detail-container {
+    width: 70%;
+  }
+}
+@media (max-width: 800px) {
+  .detail-container {
+    width: 90%;
+  }
+}
+
+.cart {
+  margin: 2rem auto;
+  text-align: center;
+  justify-content: center;
+}
+
+.cart-icon {
+  margin-left: 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.nav-bars {
+  background: #001219;
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+#basic-nav-dropdown {
+  color: white;
+}
+
+#addtocart {
+  display: block;
+  margin: 1rem auto;
+}
+.count {
+  margin: 0 1rem;
+  font-size: 2rem;
+  height: 2rem;
+  vertical-align: middle;
+}
+
+.cart img {
+  margin: 0 auto 0 2rem;
+  width: 3rem;
+  height: 3rem;
+  text-align: right;
+}
+
+.cart-num {
+  position: relative;
+  right: 0.5rem;
+  background-color: yellow;
+  color: black;
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.detail-container .count-btn {
+  font-size: 2rem;
+  padding: 0;
+  width: 2rem;
+  height: 3rem;
+}
+
+footer {
+  position: relative;
+  height: 4rem;
+  background-color: var(--clr-bg);
+  margin: 0 auto;
+}
+footer p {
+  font-size: 0.75rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+hr {
+  margin: 0 !important;
 }

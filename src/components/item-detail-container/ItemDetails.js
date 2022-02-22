@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
-import ItemCount from "../item-count/ItemCount";
+import ItemCount from "./ItemCount";
 
 const ItemDetails = ({ image, name, description, price, stock, id }) => {
   const [show, setShow] = useState(true);
@@ -25,7 +26,6 @@ const ItemDetails = ({ image, name, description, price, stock, id }) => {
 
   return (
     <>
-      <h3>Producto Seleccionado</h3>
       <h1>{name}</h1>
       <img src={image} alt="Product" style={{ maxWidth: "200px" }} />
       <h4>{description}</h4>
@@ -33,13 +33,14 @@ const ItemDetails = ({ image, name, description, price, stock, id }) => {
       {show ? (
         <ItemCount stock={stock} onAdd={onAdd} />
       ) : (
-        <button
+        <Button
+          variant="primary"
           onClick={() => {
             navigate("/cart");
           }}
         >
-          Comprar
-        </button>
+          Ir al carrito
+        </Button>
       )}
 
       <h4>{stock} unidades disponibles</h4>
