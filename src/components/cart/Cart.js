@@ -1,16 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import numeral from "numeral";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Col, Row } from "react-bootstrap";
+import ItemCount from "../item-detail-container/ItemCount";
+import { useEffect } from "react";
 
 const Cart = () => {
-  const { cartList, emptyCart, deleteItem } = useContext(CartContext);
+  const { cartList, emptyCart, deleteItem, calcTotal, total } =
+    useContext(CartContext);
 
-  const total = cartList.reduce(
-    (acum, prod) => acum + prod.cantidad * prod.price,
-    0
-  );
+  const navigate = useNavigate();
+  useEffect(() => {
+    calcTotal(cartList);
+  }, [calcTotal, cartList]);
+
+  calcTotal(cartList);
   if (cartList.length === 0) {
     return (
       <div className="cart">
@@ -21,6 +26,7 @@ const Cart = () => {
       </div>
     );
   }
+
   return (
     <div className="cart">
       <Row className="table-headers">
@@ -48,6 +54,8 @@ const Cart = () => {
       <hr />
       <h1>TOTAL PRICE :{numeral(total).format("$0,0.00")}</h1>
       <Button onClick={emptyCart}>Vaciar carrito</Button>
+      <Button onClick={() => navigate("/checkout")}>Terminar mi compra</Button>
+      <Button onClick={() => navigate("/")}>Volver al listado</Button>
     </div>
   );
 };

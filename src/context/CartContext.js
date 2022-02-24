@@ -7,6 +7,7 @@ export const CartProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [total, setTotal] = useState(0);
   useEffect(() => {
     const db = getFirestore();
 
@@ -42,6 +43,13 @@ export const CartProvider = ({ children }) => {
   const emptyCart = () => {
     setCartList([]);
   };
+  const calcTotal = (cartList) => {
+    const tot = cartList.reduce(
+      (acum, prod) => acum + prod.cantidad * prod.price,
+      0
+    );
+    setTotal(tot);
+  };
 
   return (
     <CartContext.Provider
@@ -49,9 +57,12 @@ export const CartProvider = ({ children }) => {
         products,
         loading,
         cartList,
+        setCartList,
         addItem,
         emptyCart,
         deleteItem,
+        total,
+        calcTotal,
       }}
     >
       {children}

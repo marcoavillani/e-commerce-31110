@@ -12,7 +12,6 @@ const ItemDetails = ({ image, name, description, price, stock, id }) => {
 
   const onAdd = (count) => {
     setShow(false);
-    stock = stock - count;
     addItem({
       image,
       name,

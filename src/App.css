@@ -40,9 +40,7 @@ a {
   background-color: var(--clr-bg);
   color: #283618;
 }
-.App.dark {
-  background-color: black;
-}
+
 .btn-back {
   background: hsl(205, 78%, 60%);
   display: inline-block;
