@@ -1,78 +1,77 @@
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../../context/CartContext";
+import "./navbar.css";
+import { FaBars } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { UserContext } from "../../context/UserContext";
 
 const NavBar = () => {
-  const [darkMode, setDarkMode] = useState(false);
-  const app = document.querySelector(".App");
-  if (app) {
-    darkMode ? (app.className += " dark") : (app.className = "App");
-  }
+  const [showLinks, setShowLinks] = useState(true);
+  const { cartQty } = useContext(CartContext);
+  const { user, signIn } = useContext(UserContext);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 799) {
+        setShowLinks(true);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    // return window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-    <Navbar /* bg="light" */ expand="lg" className="nav-bars">
-      <Container>
-        <Navbar.Brand>
-          <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-            My E-Commerce
+    <nav>
+      {user && <p className="alert">Bienvenido {user.displayName}!</p>}
+      <div className="nav-center">
+        <div className="nav-header">
+          <Link to={"/"} className="logo">
+            E-Commerce
           </Link>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <NavDropdown title={"Categories"} id="basic-nav-dropdown">
-              <NavDropdown.Item>
-                <NavLink
-                  className={({ isActive }) => (isActive ? "activeClass" : "")}
-                  to="/category/smartphones"
-                >
-                  Smartphones
-                </NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink
-                  className={({ isActive }) => (isActive ? "activeClass" : "")}
-                  to="/category/cars"
-                >
-                  Cars
-                </NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink
-                  className={({ isActive }) => (isActive ? "activeClass" : "")}
-                  to="/category/audio"
-                >
-                  Audio
-                </NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink
-                  className={({ isActive }) => (isActive ? "activeClass" : "")}
-                  to="/category/gaming"
-                >
-                  Gaming
-                </NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink
-                  className={({ isActive }) => (isActive ? "activeClass" : "")}
-                  to="/category/computing"
-                >
-                  Computing
-                </NavLink>
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-        <button onClick={() => setDarkMode(!darkMode)}>Dark Mode</button>
+          <button
+            className="nav-toggle"
+            onClick={() => setShowLinks(!showLinks)}
+          >
+            <FaBars />
+          </button>
+        </div>
+        {showLinks && (
+          <div className="links-container">
+            <ul className="links">
+              <li>
+                <Link to={"/category/computing"}>Computing</Link>
+              </li>
+              <li>
+                <Link to={"/category/smartphones"}>Smartphones</Link>
+              </li>
+              <li>
+                <Link to={"/category/gaming"}>Gaming</Link>
+              </li>
+              <li>
+                <Link to={"/category/cars"}>cars</Link>
+              </li>
+              <li>
+                <Link to={"/category/audio"}>Audio</Link>
+              </li>
+            </ul>
+          </div>
+        )}
+        {!user && (
+          <button className="login-btn" onClick={signIn}>
+            <FcGoogle className="google-icon" /> Sign up with Google
+          </button>
+        )}
 
-        <NavLink to="/cart">
-          <FiShoppingCart className="cart-icon" />
-        </NavLink>
-        <span className="cart-num">2</span>
-      </Container>
-    </Navbar>
+        <div className="cart-container">
+          <NavLink to="/cart">
+            <FiShoppingCart className="cart-icon" />
+          </NavLink>
+          <span className="cart-num">({cartQty})</span>
+        </div>
+      </div>
+    </nav>
   );
 };
 

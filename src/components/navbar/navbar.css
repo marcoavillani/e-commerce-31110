@@ -1,0 +1,152 @@
+@import "../../App.css";
+
+ul {
+  list-style-type: none;
+  margin-bottom: 0;
+}
+nav {
+  background-color: var(--clr-nb);
+  box-shadow: var(--dark-shadow);
+}
+.nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  color: white;
+}
+
+.nav-toggle {
+  font-size: 1.5rem;
+  color: var(--clr-primary-5);
+  background: transparent;
+  border-color: transparent;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.links a {
+  color: var(--clr-sec);
+  font-size: 0.875rem;
+  text-transform: capitalize;
+  display: block;
+  padding: 0.5rem 1rem;
+  transition: var(--transition);
+  font-weight: 600;
+}
+.links a:hover {
+  background: var(--clr-sec);
+  color: white;
+  padding-left: 1.5rem;
+}
+
+@media screen and (min-width: 800px) {
+  .nav-center {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .nav-header {
+    padding: 0;
+  }
+  .nav-toggle {
+    display: none;
+  }
+  .links-container {
+    height: auto;
+  }
+  .links {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .links a {
+    color: var(--clr-sec);
+    padding: 0;
+    margin: 0 0.5rem;
+  }
+  .links a:hover {
+    padding: 0;
+    background: transparent;
+    color: var(--clr-bg);
+  }
+}
+.login-btn {
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: var(--clr-bg);
+  box-shadow: 0;
+  transition: var(--transition);
+  cursor: pointer;
+  padding: 0.5rem;
+  border: solid 1px;
+  border-radius: 5px;
+}
+.login-btn:hover {
+  background-color: var(--clr-sec);
+  color: var(--clr-bg);
+}
+
+.google-icon:hover {
+  transition: var(--transition);
+  transform: rotate(180deg);
+}
+
+.google-icon {
+  font-size: 1.25rem;
+}
+@media screen and (max-width: 800px) {
+  .login-btn {
+    display: block;
+    margin: 1rem auto;
+  }
+  .cart-container {
+    display: flex;
+    margin: 1rem;
+    padding: 1rem;
+    justify-content: center;
+  }
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+  color: var(--clr-sec);
+  align-self: center;
+}
+.cart-num {
+  color: var(--clr-sec);
+  font-size: 1rem;
+  vertical-align: middle;
+  margin-left: 0.25rem;
+  cursor: default;
+}
+.cart-icon:hover {
+  color: var(--clr-bg);
+  transition: var(--transition);
+}
+
+.alert {
+  margin: 20px auto;
+  padding: 30px;
+  animation: appear 2s;
+  top: 10%;
+  position: absolute;
+  width: 15%;
+  right: 0;
+  z-index: 1;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #ccc;
+  background-color: var(--clr-bg);
+  transition: var(--transition);
+  visibility: hidden;
+}
+@keyframes appear {
+  from {
+  }
+  to {
+    visibility: visible;
+    transform: translateX(-2rem);
+  }
+}

@@ -1,14 +1,7 @@
-import {
-  collection,
-  doc,
-  getDoc,
-  getFirestore,
-  query,
-} from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
-// import useProducts from "../../hooks/useProducts";
+import "./itemDetail.css";
 import ItemDetails from "./ItemDetails";
 
 const ItemDetailContainer = () => {

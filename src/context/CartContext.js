@@ -7,7 +7,8 @@ export const CartProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [total, setTotal] = useState(0);
+  const [cartQty, setCartQty] = useState(0);
+
   useEffect(() => {
     const db = getFirestore();
 
@@ -25,35 +26,45 @@ export const CartProvider = ({ children }) => {
 
   const addItem = (currentItem) => {
     const index = cartList.findIndex((item) => item.id === currentItem.id);
+    setCartQty(cartQty + currentItem.cantidad);
     if (index > -1) {
       const oldQty = cartList[index].cantidad;
 
       cartList[index].cantidad = oldQty + currentItem.cantidad;
+
       setCartList([...cartList]);
     } else {
       setCartList([...cartList, currentItem]);
     }
   };
 
+  const addItemInCart = (currentItem) => {
+    const index = cartList.findIndex((item) => item.id === currentItem.id);
+    const oldQty = cartList[index].cantidad;
+    cartList[index].cantidad = oldQty + 1;
+  };
+
   const deleteItem = (selectedItem) => {
+    setCartQty(cartQty - selectedItem.cantidad);
     const filterItems = cartList.filter((item) => item.id !== selectedItem.id);
     setCartList(filterItems);
   };
 
   const emptyCart = () => {
     setCartList([]);
+    setCartQty(0);
   };
-  const calcTotal = (cartList) => {
-    const tot = cartList.reduce(
+  const calcTotal = () => {
+    return cartList.reduce(
       (acum, prod) => acum + prod.cantidad * prod.price,
       0
     );
-    setTotal(tot);
   };
 
   return (
     <CartContext.Provider
       value={{
+        addItemInCart,
         products,
         loading,
         cartList,
@@ -61,7 +72,7 @@ export const CartProvider = ({ children }) => {
         addItem,
         emptyCart,
         deleteItem,
-        total,
+        cartQty,
         calcTotal,
       }}
     >

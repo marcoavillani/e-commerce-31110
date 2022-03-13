@@ -1,15 +1,20 @@
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import "./itemList.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
+import { AiOutlineLoading } from "react-icons/ai";
 
 const ItemListContainer = () => {
   const { products, loading } = useContext(CartContext);
   const { id } = useParams();
 
   if (loading) {
-    return <h1>LOADING...</h1>;
+    return (
+      <h1 className="loading">
+        <AiOutlineLoading />
+      </h1>
+    );
   }
 
   const filterProducts = id
@@ -19,8 +24,8 @@ const ItemListContainer = () => {
   return (
     <>
       <div className="item-container">
-        <h1>Lista de Productos</h1>
-        <hr />
+        <h1>Products list</h1>
+
         <ItemList filterProducts={filterProducts} />
       </div>
     </>

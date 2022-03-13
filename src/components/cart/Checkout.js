@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import "./cart.css";
 
 const Checkout = () => {
   const [orderID, setOrderID] = useState(null);
@@ -17,9 +18,9 @@ const Checkout = () => {
     email: "",
     phone: "",
   });
-  const { cartList, setCartList, total, calcTotal } = useContext(CartContext);
+  const { cartList, setCartList, calcTotal } = useContext(CartContext);
   const nav = useNavigate();
-  calcTotal(cartList);
+  const total = calcTotal(cartList);
 
   const sendOrder = () => {
     const order = {
